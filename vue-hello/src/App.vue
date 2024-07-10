@@ -23,9 +23,29 @@
     Object conditional movie
   </h2>
 
-  <h3 v-bind:style="{
-    color:highlightColor
-  }" >Inline Style</h3>
+  <h3
+    v-bind:style="{
+      color: highlightColor,
+    }"
+  >
+    Inline Style
+  </h3>
+
+  <template v-if="display">
+    <h4
+      :style="{
+        color: highlightColor,
+      }"
+      v-if="num === 0"
+    >
+      The number is zero
+    </h4>
+    <h4 v-else-if="num > 0">The number is greater then zero</h4>
+    <h4 v-else-if="num < 0">The number is less then zero</h4>
+    <h4 v-else>Not a Number</h4>
+  </template>
+
+  <h1 v-show="display" >Display Using v-show</h1>
 </template>
 
 <script>
@@ -41,7 +61,9 @@ export default {
       status: "danger",
       isPromoted: true,
       isSoldOut: false,
-      highlightColor: 'orange'
+      highlightColor: "orange",
+      num: 0,
+      display: true,
     };
   },
 };
